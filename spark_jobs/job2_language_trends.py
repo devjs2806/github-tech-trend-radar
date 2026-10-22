@@ -54,14 +54,19 @@ def main():
     lang = (stars.withColumn("period", period)
             .groupBy("language").agg(
                 F.count("*").alias("stars"),
-                F.countDistinct("repo_name").alias("repos"),
+                F.approx_count_distinct("repo_name").alias("repos"),
                 F.sum(F.when(F.col("period") == "recent", 1).otherwise(0)).alias("recent_stars"),
                 F.sum(F.when(F.col("period") == "previous", 1).otherwise(0)).alias("previous_stars")))
     total = stars.count()
+    tp = stars.withColumn("period", period).groupBy().agg(
+        F.sum(F.when(F.col("period") == "recent", 1).otherwise(0)).alias("r"),
+        F.sum(F.when(F.col("period") == "previous", 1).otherwise(0)).alias("p")).first()
+    tot_r, tot_p = max(tp["r"] or 0, 1), max(tp["p"] or 0, 1)
+    share_momentum = F.round(((F.col("recent_stars") + 1) / tot_r) / ((F.col("previous_stars") + 1) / tot_p), 2)
     lang = (lang.withColumn("share_percent", F.round(F.col("stars") * 100.0 / total, 2))
-            .withColumn("momentum", F.round((F.col("recent_stars") + 1) / (F.col("previous_stars") + 1), 2))
-            .withColumn("trend", F.when(F.col("momentum") >= 1.2, "rising")
-                        .when(F.col("momentum") <= 0.8, "cooling").otherwise("stable"))
+            .withColumn("momentum", share_momentum)
+            .withColumn("trend", F.when(F.col("momentum") >= 1.1, "rising")
+                        .when(F.col("momentum") <= 0.9, "cooling").otherwise("stable"))
             .orderBy(F.desc("stars")))
     save_result(lang, "language_summary", spark)
 
@@ -79,11 +84,11 @@ def main():
               .withColumn("period", period)
               .groupBy("topic").agg(
                   F.count("*").alias("stars"),
-                  F.countDistinct("repo_name").alias("repos"),
+                  F.approx_count_distinct("repo_name").alias("repos"),
                   F.sum(F.when(F.col("period") == "recent", 1).otherwise(0)).alias("recent_stars"),
                   F.sum(F.when(F.col("period") == "previous", 1).otherwise(0)).alias("previous_stars"))
               .filter(F.col("repos") >= 2)
-              .withColumn("momentum", F.round((F.col("recent_stars") + 1) / (F.col("previous_stars") + 1), 2))
+              .withColumn("momentum", share_momentum)
               .orderBy(F.desc("stars")).limit(config.TOP_N))
     save_result(topics, "topic_trends", spark)
 

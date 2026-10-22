@@ -32,8 +32,8 @@ def main():
     # ---------------- dataset summary ----------------
     summ = ev.agg(
         F.count("*").alias("total_events"),
-        F.countDistinct("repo_name").alias("distinct_repos"),
-        F.countDistinct("actor_login").alias("distinct_users"),
+        F.approx_count_distinct("repo_name").alias("distinct_repos"),
+        F.approx_count_distinct("actor_login").alias("distinct_users"),
         F.min("ts").alias("first_event_utc"),
         F.max("ts").alias("last_event_utc"),
     ).withColumn("hours_covered",
@@ -59,7 +59,7 @@ def main():
         F.sum(F.when(F.col("type") == "WatchEvent", 1).otherwise(0)).alias("stars"),
         F.sum(F.when(F.col("type") == "PushEvent", 1).otherwise(0)).alias("pushes"),
         F.sum(F.when(F.col("type") == "PullRequestEvent", 1).otherwise(0)).alias("pull_requests"),
-        F.countDistinct("actor_login").alias("active_users"))
+        F.approx_count_distinct("actor_login").alias("active_users"))
         .orderBy("hour_ts"))
     save_result(hourly, "hourly_activity", spark)
 
@@ -78,7 +78,7 @@ def main():
     forks = ev.filter(F.col("type") == "ForkEvent").groupBy("repo_name").agg(F.count("*").alias("forks"))
 
     top_starred = (stars.groupBy("repo_name").agg(F.count("*").alias("stars"),
-                                                  F.countDistinct("actor_login").alias("unique_stargazers"))
+                                                  F.approx_count_distinct("actor_login").alias("unique_stargazers"))
                    .join(forks, "repo_name", "left").fillna(0, ["forks"])
                    .orderBy(F.desc("stars")).limit(config.TOP_N))
     save_result(top_starred, "top_starred_repos", spark)
@@ -125,8 +125,8 @@ def main():
     # ---------------- organisations & contributors ----------------
     orgs = (ev.filter(F.col("org_login").isNotNull())
             .groupBy("org_login").agg(F.count("*").alias("events"),
-                                      F.countDistinct("repo_name").alias("repos"),
-                                      F.countDistinct("actor_login").alias("contributors"))
+                                      F.approx_count_distinct("repo_name").alias("repos"),
+                                      F.approx_count_distinct("actor_login").alias("contributors"))
             .orderBy(F.desc("events")).limit(config.TOP_N))
     save_result(orgs, "top_orgs", spark)
 
@@ -134,7 +134,7 @@ def main():
                                                             "IssuesEvent", "PullRequestReviewEvent",
                                                             "IssueCommentEvent"))
     contrib = (humans.groupBy("actor_login").agg(F.count("*").alias("events"),
-                                                 F.countDistinct("repo_name").alias("repos_touched"))
+                                                 F.approx_count_distinct("repo_name").alias("repos_touched"))
                .orderBy(F.desc("events")).limit(config.TOP_N))
     save_result(contrib, "top_contributors", spark)
 
@@ -152,7 +152,7 @@ def main():
                   F.count("*").alias("total_events"),
                   cnt("WatchEvent", "stars"), cnt("ForkEvent", "forks"), cnt("PushEvent", "pushes"),
                   cnt("PullRequestEvent", "pull_requests"), cnt("IssuesEvent", "issues"),
-                  F.countDistinct("actor_login").alias("unique_actors"))
+                  F.approx_count_distinct("actor_login").alias("unique_actors"))
               .filter(F.col("stars") >= config.MIN_RECENT_STARS)
               .withColumn("dev_activity", F.col("pushes") + F.col("pull_requests") + F.col("issues"))
               .withColumn("dev_to_star_ratio", F.round(F.col("dev_activity") / F.col("stars"), 3))

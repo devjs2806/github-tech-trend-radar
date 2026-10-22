@@ -42,7 +42,7 @@ def get_spark(app_name):
     builder = (SparkSession.builder
                .appName(app_name)
                .config("spark.sql.session.timeZone", "UTC")
-               .config("spark.sql.shuffle.partitions", "16")
+               .config("spark.sql.shuffle.partitions", "64")
                .config("spark.driver.memory", "3g")
                .config("spark.ui.showConsoleProgress", "false"))
     spark = None
@@ -86,6 +86,10 @@ def load_events(spark, include_live=False):
           .withColumn("day", F.to_date("ts"))
           .withColumn("hour_ts", F.date_trunc("hour", "ts"))
           .withColumn("is_bot", F.lower(F.col("actor_login")).rlike(r"(\[bot\]$|-bot$|^bot-|^dependabot|^renovate)")))
+    end = os.environ.get("RADAR_END_DATE", "").strip()
+    if end:
+        df = df.filter(F.col("ts") < F.lit(end).cast("timestamp"))
+        print(f"  using events before {end} (RADAR_END_DATE)")
     return df
 
 

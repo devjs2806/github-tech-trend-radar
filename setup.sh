@@ -40,7 +40,7 @@ cat > radar_env.sh <<EOF
 export GITHUB_TOKEN="PASTE_YOUR_TOKEN_HERE"
 export RADAR_HDFS_URI="$HDFS_URI"
 export RADAR_USE_HDFS=1
-export RADAR_SAVE_TO_HIVE=1
+export RADAR_SAVE_TO_HIVE=0
 export PYSPARK_PYTHON=python3
 cd "$PROJECT"
 EOF

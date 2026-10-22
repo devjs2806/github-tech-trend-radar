@@ -8,7 +8,7 @@ set -e
 cd "$(dirname "$0")"
 
 if command -v spark-submit >/dev/null 2>&1; then
-  RUN="spark-submit --master local[*] --driver-memory 4g"
+  RUN="spark-submit --master local[4] --driver-memory 3g"
 else
   echo "spark-submit not found, running with python3 (pip pyspark)"
   RUN="python3"

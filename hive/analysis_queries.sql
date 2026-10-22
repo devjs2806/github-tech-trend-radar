@@ -3,7 +3,6 @@
 --  Run:  hive -f hive/analysis_queries.sql     (after create_tables.sql)
 --  Take screenshots of these outputs for your report.
 -- ==================================================================
-ADD JAR ${env:HIVE_HOME}/hcatalog/share/hcatalog/hive-hcatalog-core.jar;
 USE github_radar;
 SET hive.cli.print.header=true;
 

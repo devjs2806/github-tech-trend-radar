@@ -5,7 +5,6 @@
 
 -- JSON SerDe. On Hive 2.x / 3.x this jar is needed; on Hive 4 it is built in
 -- (if this line errors on your version, comment it out).
-ADD JAR ${env:HIVE_HOME}/hcatalog/share/hcatalog/hive-hcatalog-core.jar;
 
 CREATE DATABASE IF NOT EXISTS github_radar;
 USE github_radar;

@@ -47,7 +47,7 @@ def build_hourly_dataset(spark, ev):
         F.sum(F.when(F.col("type") == "WatchEvent", 1).otherwise(0)).alias("stars"),
         F.sum(F.when(F.col("type") == "ForkEvent", 1).otherwise(0)).alias("forks"),
         F.sum(F.when(F.col("type") == "PushEvent", 1).otherwise(0)).alias("pushes"),
-        F.countDistinct("actor_login").alias("actors"))
+        F.approx_count_distinct("actor_login").alias("actors"))
 
     # full repo x hour grid so that hours with no activity become 0
     b = ev.agg(F.min("hour_ts").alias("a"), F.max("hour_ts").alias("b")).first()
@@ -166,7 +166,7 @@ def clustering(spark, ev):
                 c("WatchEvent").alias("stars"), c("ForkEvent").alias("forks"),
                 c("PushEvent").alias("pushes"), c("PullRequestEvent").alias("prs"),
                 c("IssuesEvent").alias("issues"),
-                F.countDistinct("actor_login").alias("actors"))
+                F.approx_count_distinct("actor_login").alias("actors"))
             .filter(F.col("events") >= config.MIN_EVENTS_FOR_CLUSTER))
     for src, dst in [("stars", "star_share"), ("forks", "fork_share"), ("pushes", "push_share"),
                      ("prs", "pr_share"), ("issues", "issue_share")]:

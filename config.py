@@ -50,7 +50,7 @@ else:
 
 # Also save Spark results as Hive tables (database below).
 # Results are ALWAYS saved as CSV in output/ as well.
-SAVE_TO_HIVE = os.environ.get("RADAR_SAVE_TO_HIVE", "1") == "1"
+SAVE_TO_HIVE = os.environ.get("RADAR_SAVE_TO_HIVE", "0") == "1"
 HIVE_DB = "github_radar"
 
 # ---------------------------------------------------------------
