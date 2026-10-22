@@ -1,0 +1,17 @@
+type,events,bot_events,bot_percent
+PushEvent,7446816,1544709,20.74
+CreateEvent,1104454,170120,15.4
+DeleteEvent,402032,109427,27.22
+PullRequestEvent,355343,118835,33.44
+IssueCommentEvent,185914,105625,56.81
+IssuesEvent,136848,19249,14.07
+PullRequestReviewEvent,79506,29812,37.5
+PullRequestReviewCommentEvent,64982,31066,47.81
+WatchEvent,54491,77,0.14
+ReleaseEvent,36830,16428,44.6
+ForkEvent,6686,29,0.43
+MemberEvent,4375,46,1.05
+CommitCommentEvent,2648,2359,89.09
+GollumEvent,760,101,13.29
+PublicEvent,716,3,0.42
+DiscussionEvent,460,66,14.35

@@ -1,0 +1,7 @@
+requests>=2.28
+pandas>=1.5
+matplotlib>=3.6
+streamlit>=1.38
+# PySpark: if Spark is already installed on your machine (spark-submit works),
+# you do NOT need this line. Otherwise keep it. Use the same version as your Spark.
+pyspark>=3.4

@@ -1,0 +1,17 @@
+type,count,percent
+PushEvent,7446816,75.35
+CreateEvent,1104454,11.18
+DeleteEvent,402032,4.07
+PullRequestEvent,355343,3.6
+IssueCommentEvent,185914,1.88
+IssuesEvent,136848,1.38
+PullRequestReviewEvent,79506,0.8
+PullRequestReviewCommentEvent,64982,0.66
+WatchEvent,54491,0.55
+ReleaseEvent,36830,0.37
+ForkEvent,6686,0.07
+MemberEvent,4375,0.04
+CommitCommentEvent,2648,0.03
+GollumEvent,760,0.01
+PublicEvent,716,0.01
+DiscussionEvent,460,0.0

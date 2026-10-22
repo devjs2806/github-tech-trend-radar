@@ -1,0 +1,4 @@
+model,rmse,mae,r2
+Linear Regression,0.5504,0.3658,0.2111
+Gradient-Boosted Trees,0.5443,0.3712,0.2286
+Naive baseline (last hour),0.6997,0.3209,-0.2748

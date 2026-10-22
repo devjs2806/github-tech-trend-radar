@@ -1,0 +1,160 @@
+type	events
+PushEvent	8600575
+CreateEvent	1269109
+DeleteEvent	468475
+PullRequestEvent	459043
+IssueCommentEvent	243519
+IssuesEvent	178136
+PullRequestReviewEvent	106638
+PullRequestReviewCommentEvent	80462
+WatchEvent	72243
+ReleaseEvent	51024
+ForkEvent	9790
+MemberEvent	5953
+CommitCommentEvent	3410
+GollumEvent	1190
+PublicEvent	992
+DiscussionEvent	582
+repo_name	stars
+eternity4719/HowToLiveBetter	539
+storytold/photocraft	446
+Niko1221/Strata	383
+lexmount/moli	337
+DietrichGebert/ponytail	300
+morluto/rea	298
+openai/math	264
+Panniantong/Agent-Reach	221
+boykopovar/AnyPS5	193
+tester-army/e2e	193
+mattpocock/skills	185
+pbakaus/impeccable	171
+debpalash/VoiceStudio	167
+ifixai-ai/iFixAi	163
+affaan-m/ECC	153
+deepseek-ai/deepseek-harness	139
+CopilotKit/OpenDots	137
+stablyai/orca	131
+rehan-remade/universal-modder	130
+neilsonnn/image-blaster	130
+repo_name	forks
+wwwwwwworld/solana-trading-bot-v3	76
+k1tbyte/Wand-Enhancer	57
+lovePinesnop/polymarket-kalshi-arbitrage-bot	53
+storytold/photocraft	52
+x4gpanell/SuperJinX	34
+jhutar/libecpg-srcfedora-fork	30
+storytold/filmcraft	23
+morluto/rea	23
+RikkaApps/websites	23
+Vodiwalker/vodiwalker_panel	22
+microsoft/vscode	22
+Niko1221/Strata	22
+academicpages/academicpages.github.io	21
+nodejs/node	20
+rhtap-perf-test/nodejs-devfile-sample1	20
+eternity4719/HowToLiveBetter	19
+NousResearch/hermes-agent	19
+rhtap-perf-test/nodejs-devfile-sample2	19
+torvalds/linux	18
+kubernetes/kubernetes	18
+event_date	events	active_users
+2026-10-01	2073885	454674
+2026-10-02	2040983	456596
+2026-10-03	1954718	413290
+2026-10-04	1807837	399924
+2026-10-05	2005524	495827
+2026-10-06	1505677	409252
+2026-10-07	162517	63959
+event_hour	events
+0	447338
+1	470222
+2	488685
+3	505502
+4	502453
+5	497324
+6	507007
+7	507810
+8	517234
+9	510730
+10	498824
+11	515191
+12	534347
+13	537129
+14	524923
+15	507654
+16	507443
+17	494041
+18	455766
+19	418909
+20	413056
+21	398450
+22	402068
+23	389035
+org_login	events	repos
+static-web-apps-testing-org	50646	30434
+openharmony	20668	637
+CodeHub-Clients	16418	1
+open-telemetry	12371	69
+docker-hardened-images	11925	3
+merge-demo	10399	5
+openclaw	8873	73
+microsoft	8350	752
+tomevault-io	7077	7
+rust-lang	6565	50
+conda-forge	6336	517
+LizardByte	5342	28
+api-evangelist	5281	4915
+rhtap-perf-test	5258	36
+PostHog	5126	48
+OSTDB	4534	1
+chromium-full-mirror	4396	178
+AI-Rapid-Prototyping	4168	2
+ankhorage	4119	48
+apache	4079	420
+new_repositories
+0
+actor_kind	events
+bot	2466351
+human	9084790
+actor_login	contributions
+OpenHarmonySCM-noreply	20562
+MaxHalford	20245
+bogdanstancu1119-maker	19251
+ugmoddev	18673
+vndel	16420
+dlaryan	15563
+dimitriskripkin-lgtm	13272
+snehasaji-demo	12657
+xulfo	11048
+dark-shadowblade	9787
+SoliSpirit	9153
+SuncNoob	8503
+trapgoatkaymow-sketch	8401
+formosocn	7919
+marcdshark666	7818
+golfpip	7671
+loganfoxdale	7642
+AzizjonLutfullayev	7418
+gorgo-dotcom	7304
+s741dev	7114
+repo_name	prs	total_events
+sudosubin/agents.nix	1859	14850
+docker-hardened-images/log	1828	11520
+TauCetiProject/TauCeti	1768	3553
+openclaw/openclaw	1320	4133
+Kilo-Org/cloud	1190	1317
+microsoft/winget-pkgs	874	2054
+kirodotdev/KiroCrew	783	2584
+merge-demo/mergequeue-bazel	712	8153
+NousResearch/hermes-agent	652	1945
+NixOS/nixpkgs	570	1526
+omnisolo-llc/onehumancorp	423	1535
+metasequoiaime/msime	405	1286
+PostHog/posthog	352	4139
+awslabs/aidlc-workflows	286	802
+chalbert/web-everything	267	666
+rjwalters/loom	262	1129
+AlexanderMattTurner/agent-glovebox	253	1122
+artificial-hedge/dipcatcher	241	1100
+Homebrew/homebrew-core	232	1306
+JovieInc/Jovie	229	2328
